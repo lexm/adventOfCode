@@ -2,29 +2,33 @@ var inputStr = "R1, L4, L5, L5, R2, R2, L1, L1, R2, L3, R4, R3, R2, L4, L2, R5, 
 // var inputStr = 'R2, L3';
 // var inputStr = 'R2, R2, R2';
 // var inputStr = 'R5, L5, R5, R3';
-var dirList = inputStr.split(', ');
-// console.log(dirList);
-var x = 0;
-var y = 0;
-dir = 0;
-dirList.forEach(function(ele) {
-  var relDir = ele[0];
-  var dist = parseInt(ele.slice(1));
-  if(relDir === 'R') {
-    dir = (dir + 1 + 4) % 4;
-  } else if (relDir === 'L') {
-    dir = (dir - 1 + 4) % 4;
-  } else {
-    console.error('wrong input');
-  }
-  if(dir === 0) {
-    y += dist;
-  } else if (dir === 1) {
-    x += dist;
-  } else if (dir === 2) {
-    y -= dist;
-  } else if (dir === 3) {
-    x -= dist;
-  }
-});
-console.log(Math.abs(x) + Math.abs(y));
+
+function noTaxi1(input) {
+  var dirList = input.split(', ');
+  var x = 0;
+  var y = 0;
+  var dir = 0;
+  dirList.forEach(function(ele) {
+    var relDir = ele[0];
+    var dist = parseInt(ele.slice(1));
+    if(relDir === 'R') {
+      dir = (dir + 1 + 4) % 4;
+    } else if (relDir === 'L') {
+      dir = (dir - 1 + 4) % 4;
+    } else {
+      console.error('wrong input');
+    }
+    if(dir === 0) {
+      y += dist;
+    } else if (dir === 1) {
+      x += dist;
+    } else if (dir === 2) {
+      y -= dist;
+    } else if (dir === 3) {
+      x -= dist;
+    }
+  });
+  return Math.abs(x) + Math.abs(y);
+}
+
+console.log(noTaxi1(inputStr));
